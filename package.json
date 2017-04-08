@@ -3,7 +3,7 @@
   "name": "procomp-com-ua",
   "homepage": "https://procomp.com.ua",
   "twitter": "",
-  "repository": "",
+  "repository": "https://github.com/procomp-com-ua/procomp-com-ua.github.io.git",
   "scripts": {
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"src/**/*.css\"",
@@ -11,7 +11,9 @@
     "start": "phenomic start",
     "build": "phenomic build",
     "pretest": "npm run lint",
-    "test": "npm run build"
+    "test": "npm run build",
+	"predeploy": "npm run build",
+    "deploy": "./deploy.cmd"
   },
   "phenomic": {
     "CNAME": true
