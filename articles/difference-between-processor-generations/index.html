@@ -1,0 +1,185 @@
+<!doctype html><html lang="en"><head><title data-react-helmet="true">Как отличаются между собой поколения процессоров</title><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta data-react-helmet="true" name="generator" content="Phenomic 0.21.0"/><meta data-react-helmet="true" property="og:site_name" content="procomp-com-ua"/><meta data-react-helmet="true" name="twitter:site" content="@"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/><meta data-react-helmet="true" property="og:type" content="article"/><meta data-react-helmet="true" property="og:title" content="Как отличаются между собой поколения процессоров"/><meta data-react-helmet="true" property="og:url" content="https://procomp.com.ua/articles/difference-between-processor-generations/"/><meta data-react-helmet="true" property="og:image" content="https://procomp.com.ua/"/><meta data-react-helmet="true" property="og:description" content="В этой статье я пытаюсь вычислить разницу в производительности процессоров в идеальном случае - когда производительность линейно зависит от…"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Как отличаются между собой поколения процессоров"/><meta data-react-helmet="true" name="twitter:creator" content="@"/><meta data-react-helmet="true" name="twitter:description" content="В этой статье я пытаюсь вычислить разницу в производительности процессоров в идеальном случае - когда производительность линейно зависит от…"/><meta data-react-helmet="true" name="twitter:image" content="https://procomp.com.ua/"/><meta data-react-helmet="true" name="description" content="В этой статье я пытаюсь вычислить разницу в производительности процессоров в идеальном случае - когда производительность линейно зависит от…"/><link rel="stylesheet" href="/phenomic.browser.e1b42caf4e66796ee19e.css"/><script data-react-helmet="true" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6&amp;flags=gated"></script></head><body><div id="phenomic"><div class="_1RdlK" data-reactroot="" data-reactid="1" data-react-checksum="-1371906030"><div hidden="" data-reactid="2"><!-- react-empty: 3 --><!-- react-empty: 4 --><style data-reactid="5">@-ms-viewport { width: device-width; }</style></div><header class="_2FSyU" data-reactid="6"><nav class="_3LSR3" data-reactid="7"><div class="_3AJay" data-reactid="8"><a class="UWcAH" href="/" data-reactid="9">Home</a></div><div class="_3X6jh" data-reactid="10"><!-- react-text: 11 --><!-- /react-text --><a href="https://github.com/procomp-com-ua/procomp-com-ua.github.io.git" class="UWcAH" data-reactid="12"><span class="SVGInline SVGInline--cleaned" data-reactid="13"><svg class="SVGInline-svg SVGInline--cleaned-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.238 1.84 1.238 1.07 1.834 2.806 1.304 3.49.997.108-.776.42-1.306.763-1.605-2.665-.305-5.467-1.334-5.467-5.93 0-1.312.47-2.382 1.236-3.222-.125-.303-.536-1.524.116-3.176 0 0 1.008-.322 3.3 1.23A11.51 11.51 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.236 1.91 1.236 3.22 0 4.61-2.807 5.625-5.48 5.922.43.372.824 1.102.824 2.222v3.293c0 .32.192.694.8.576C20.567 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></span><!-- react-text: 14 -->GitHub<!-- /react-text --></a></div></nav></header><div class="_3SQKJ" data-reactid="15"><div class="_1V853" data-reactid="16"><!-- react-empty: 17 --><div class="_3dOrW" data-reactid="18"><div class="_3kNGo" data-reactid="19"><div class="_15_CA" data-reactid="20"><h1 class="_2wBO_" data-reactid="21">Как отличаются между собой поколения процессоров</h1></div></div></div><div class="_15_CA _1yRWU" data-reactid="22"><div class="_2iPjb" data-reactid="23"><div class="phenomic-BodyContainer" data-reactid="24"><p>В этой статье я пытаюсь вычислить разницу в производительности процессоров в идеальном случае - когда производительность линейно зависит от количества ядер и частоты.</p>
+<h1 id="Расчет-коэффициентов-производительности"><a href="#%D0%A0%D0%B0%D1%81%D1%87%D0%B5%D1%82-%D0%BA%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" class="phenomic-HeadingAnchor">#</a>Расчет коэффициентов производительности</h1>
+<p>Для начала посчитаем как между собой отличаются поколения процессоров.
+То есть насколько одно ядро процессора на сокете 1366 (архитектура Westmere) работающее на частоте 3ГГц
+медленнее одного ядра процессора на сокете 2011-1, 2011-2 и 2011-3 работающего на такой же на частоте.
+Это Sandy Bridge, Ivy Bridge и Haswell соответственно.</p>
+<p>Данные по Westmere, Sandy Bridge, Ivy Bridge и Haswell я взял из этой статьи: <a href="http://www.anandtech.com/show/8426/the-intel-haswell-e-cpu-review-core-i7-5960x-i7-5930k-i7-5820k-tested/2">http://www.anandtech.com/show/8426/the-intel-haswell-e-cpu-review-core-i7-5960x-i7-5930k-i7-5820k-tested/2</a></p>
+<table>
+  <tr>
+    <th>Пакет</th>
+    <th>Westmere</th>
+    <th>Sandy Bridge</th>
+    <th>Ivy Bridge</th>
+    <th>Haswell</th>
+  </tr>
+  <tr>
+    <td>CineBench 10 single</td>
+    <td>4567</td>
+    <td>5299</td>
+    <td>5728</td>
+    <td>6261</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>0</td>
+    <td>16.03%</td>
+    <td>25.42%</td>
+    <td>37.09%</td>
+  </tr>
+  <tr>
+    <td>CineBench 11.5 single</td>
+    <td>1.11</td>
+    <td>1.3</td>
+    <td>1.35</td>
+    <td>1.4</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>0</td>
+    <td>17.12%</td>
+    <td>21.62%</td>
+    <td>26.13%</td>
+  </tr>
+  <tr>
+    <td>CineBench 15 single</td>
+    <td>98</td>
+    <td>111</td>
+    <td>117</td>
+    <td>127</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>0</td>
+    <td>13.27%</td>
+    <td>19.39%</td>
+    <td>29.59%</td>
+  </tr>
+  <tr>
+    <td>Итого прирост однопоточной производительности</td>
+    <td>0.00%</td>
+    <td>15.47%</td>
+    <td>22.14%</td>
+    <td>30.94%</td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th>Пакет</th>
+    <th>Westmere</th>
+    <th>Sandy Bridge</th>
+    <th>Ivy Bridge</th>
+    <th>Haswell</th>
+  </tr>
+  <tr>
+    <td>CineBench 10 multi</td>
+    <td>15857</td>
+    <td>19351</td>
+    <td>20710</td>
+    <td>22116</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>0</td>
+    <td>22.03%</td>
+    <td>30.60%</td>
+    <td>39.47%</td>
+  </tr>
+  <tr>
+    <td>CineBench 11.5 multi</td>
+    <td>4.42</td>
+    <td>5.13</td>
+    <td>5.38</td>
+    <td>5.55</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>0</td>
+    <td>16.06%</td>
+    <td>21.72%</td>
+    <td>25.57%</td>
+  </tr>
+  <tr>
+    <td>CineBench 15 multi</td>
+    <td>383</td>
+    <td>438</td>
+    <td>456</td>
+    <td>504</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>0</td>
+    <td>14.36%</td>
+    <td>19.06%</td>
+    <td>31.59%</td>
+  </tr>
+  <tr>
+    <td>PovRay</td>
+    <td>805</td>
+    <td>949</td>
+    <td>1021</td>
+    <td>1199</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>0</td>
+    <td>17.89%</td>
+    <td>26.83%</td>
+    <td>48.94%</td>
+  </tr>
+  <tr>
+    <td>Итого прирост многопоточной производительности</td>
+    <td>0.00%</td>
+    <td>17.59%</td>
+    <td>24.55%</td>
+    <td>36.39%</td>
+  </tr>
+  </table>
+  <table>
+  <tr>
+    <th>Пакет</th>
+    <th>Westmere</th>
+    <th>Sandy Bridge</th>
+    <th>Ivy Bridge</th>
+    <th>Haswell</th>
+  </tr>
+  <tr>
+    <td>Средний прирост</td>
+    <td>0.00%</td>
+    <td>16.53%</td>
+    <td>23.35%</td>
+    <td>33.67%</td>
+  </tr>
+</table>
+<p>Я отбросил данные не относящиеся к рендерингу и получил следующие значения:</p>
+<p>Sandy Bridge быстрее Westmere на 16%</p>
+<p>Ivy Bridge быстрее Westmere на 23%</p>
+<p>Haswell быстрее Westmere на 33%</p>
+<p>Соотвественно получаются коэффициенты 1.16, 1.23 и 1.33 для Sandy Bridge, Ivy Bridge и Haswell по сравнению с Westmere.</p>
+<p>Производительность Broadwell, Skylake и Kaby lake выше Haswell при одинаковой частоте где-то на 6-7% <a href="https://www.pcper.com/reviews/Processors/Intel-Core-i7-7700K-Review-Kaby-Lake-and-14nm/Clock-Clock-Kaby-Lake-Skylake-Broad">(ссылка на результаты тестов)</a>.
+Между собой Broadwell, Skylake и Kaby lake отличается в пределах статистической погрешности.
+Производительность новых процессоров растет за счет увеличения частоты, а не архитектуры, к сожалению. </p>
+<p>Эти коэффициенты используются повсеместно на <a href="https://procomp.com.ua">procomp.com.ua</a> для сравнения конфигураций основанных на процессорах разных поколений между собой.</p>
+<p>Еще раз оговорюсь, что все нижесказанное имеет смысл только для случая линейного прироста производительности от количества ядер процессора.
+То есть для рендеринга. Любые другие программы от многопоточности выигрывают не так сильно. А иногда и вообще не выигрывают и всегда используют только одно ядро.</p>
+<h1 id="Примеры-расчета-производительности-с-применением-этих-коэффициентов"><a href="#%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B-%D1%80%D0%B0%D1%81%D1%87%D0%B5%D1%82%D0%B0-%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D1%81-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC-%D1%8D%D1%82%D0%B8%D1%85-%D0%BA%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82%D0%BE%D0%B2" class="phenomic-HeadingAnchor">#</a>Примеры расчета производительности с применением этих коэффициентов</h1>
+<p>Для начала вспомним, что такое технология Turbo Boost и как она работает: <a href="https://ru.wikipedia.org/wiki/Turbo_Boost">https://ru.wikipedia.org/wiki/Turbo_Boost</a></p>
+<p>Конкретно, нас интересует тот факт, что Turbo Boost не может поднять частоту до максимальной сразу на всех ядрах процессора, потому что процессор, может выйти за пределы своего теплового пакета при этом (перегреться).</p>
+<p>К примеру для Core i7-5960x Turbo Boost обозначается как 3.5 ГГц при базовой частоте 3.0ГГц, но 3.5ГГц может быть только в случае, если актвино (задествовано по максимуму) лишь одно ядро. То есть выполняется какое-то строго однопоточное приложение - к примеру, javascript в броузере. Если же задействованы по максимуму сразу все ядра процессора - например, при рендеринге, то Turbo Boost подымет частоту ядер лишь до 3.3 ГГц. Именно на частоту 3.3ГГц стоит ориентироваться при оценке производительности системы.</p>
+<p>От скорости работы памяти и дисковой подсистеы рендеринг особо не зависит, все упирается только в процессоры.</p>
+<p>Будем измерять производительность в попугаях:</p>
+<p>1 ядро Westmere на 1ГГц - это один попугай</p>
+<h2 id="Примеры-подсчета-производитетельности"><a href="#%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B-%D0%BF%D0%BE%D0%B4%D1%81%D1%87%D0%B5%D1%82%D0%B0-%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" class="phenomic-HeadingAnchor">#</a>Примеры подсчета производитетельности:</h2>
+<p><strong>Система на базе одного Core i7-5960x</strong>. 8 ядер. Частота базовая - 3 ГГц. Частота при Turbo Boost на всех ядрах - 3.3 ГГц.</p>
+<p>1 x 8 x 3.0 x 1.33 = 31.92 - базовая производительность.</p>
+<p>1 x 8 x 3.3 x 1.33 = 35.11 - производительность в Turbo Boost</p>
+<p><strong>Система на базе двух Xeon X5670</strong>. 6 ядер. Частота базовая - 2.93 ГГц. Частота при Turbo Boost на всех ядрах - 3.2 ГГц.</p>
+<p>2 x 6 x 2.93 x 1 = 35.16 - базовая производительность.</p>
+<p>2 x 6 x 3.2 x 1 = 38.4 - производительность в Turbo Boost</p>
+<p><strong>Система на базе двух Xeon E5-2670 v1</strong>. 8 ядер. Частота базовая - 2.6 ГГц. Частота при Turbo Boost на всех ядрах - 3 ГГц.</p>
+<p>2 x 8 x 2.6 x 1.16 = 48.26 - базовая производительность.</p>
+<p>2 x 8 x 3.0 x 1.16 = 55.68 - производительность в Turbo Boost </p>
+<p><strong>Почти максимально возможная на сегодняшний день система (просто для справки - каждый процессор стоит больше $3000):</strong> 2 х Xeon E5-2699 v3 - 18 ядер, базовая 2.3, турбобуст на всех ядрах - 2.8</p>
+<p>2 x 18 x 2.3 x 1.3 = 110 - базовая производительность.</p>
+<p>2 x 18 x 2.8 x 1.3 = 134.06 - производительность в Turbo Boost</p>
+</div></div></div></div></div><footer class="_1BvTd" data-reactid="25"><p data-reactid="26"><a href="https://phenomic.io" class="_1a1P_" data-reactid="27"><!-- react-text: 28 -->Website generated with <!-- /react-text --><span class="_2b3UD" data-reactid="29">&lt;Phenomic /&gt;</span></a></p></footer></div></div><script>window.__COLLECTION__ = [{"layout":"PageError","route":"404.html","description":"","__filename":"404.md","__url":"/404.html","__resourceUrl":"/404.html","__dataUrl":"/404.html.662802cff01cfa4a7c1ba50b2c717c7b.json"},{"title":"About Phenomic base theme","hero":"https://farm4.staticflickr.com/3949/15589950511_3675b15e59_k.jpg","cta":{"label":"Discover Phenomic now","link":"https://phenomic.io/","props":{"big":true}},"description":"You are currently viewing Phenomic base theme. For now Phenomic does not provide a native way to extend themes but since it's based on…","__filename":"about.md","__url":"/about/","__resourceUrl":"/about/index.html","__dataUrl":"/about/index.html.1e57bba0ae66cd360e6b59292f624a63.json"},{"title":"Как отличаются между собой поколения процессоров","description":"В этой статье я пытаюсь вычислить разницу в производительности процессоров в идеальном случае - когда производительность линейно зависит от…","__filename":"articles\\difference-between-processor-generations.md","__url":"/articles/difference-between-processor-generations/","__resourceUrl":"/articles/difference-between-processor-generations/index.html","__dataUrl":"/articles/difference-between-processor-generations/index.html.0f81283f94fe6eea9e6e3f07fdc1bbbe.json"},{"description":"","__filename":"articles\\gtx-vs-quadro.md","__url":"/articles/gtx-vs-quadro/","__resourceUrl":"/articles/gtx-vs-quadro/index.html","__dataUrl":"/articles/gtx-vs-quadro/index.html.d41d8cd98f00b204e9800998ecf8427e.json"},{"title":"Компьютер для 3D","description":"My super content!","__filename":"configurations\\computer-for-3d.md","__url":"/configurations/computer-for-3d/","__resourceUrl":"/configurations/computer-for-3d/index.html","__dataUrl":"/configurations/computer-for-3d/index.html.04aff0ce6b347c1365cc63fcefbd6079.json"},{"title":"Компьютер для Photoshop","description":"My super content!","__filename":"configurations\\computer-for-photoshop.md","__url":"/configurations/computer-for-photoshop/","__resourceUrl":"/configurations/computer-for-photoshop/index.html","__dataUrl":"/configurations/computer-for-photoshop/index.html.b01eb0cf674ce6cd3805162b9e252bab.json"},{"title":"Компьютер для программирования","description":"My super content!","__filename":"configurations\\computer-for-programming.md","__url":"/configurations/computer-for-programming/","__resourceUrl":"/configurations/computer-for-programming/index.html","__dataUrl":"/configurations/computer-for-programming/index.html.383cb2d6d8ef812af5cf8c135d3c8790.json"},{"description":"","__filename":"configurations\\gpu-render-station.md","__url":"/configurations/gpu-render-station/","__resourceUrl":"/configurations/gpu-render-station/index.html","__dataUrl":"/configurations/gpu-render-station/index.html.d41d8cd98f00b204e9800998ecf8427e.json"},{"title":"procomp.com.ua","layout":"Homepage","hero":"https://farm4.staticflickr.com/3949/15589950511_3675b15e59_k.jpg","cta":{"label":"Наше лучшее предложение - двухпроцессорный, 12 ядерный компьютер с 48Гб ОЗУ для 3D за 600$","link":"about"},"description":"Мы делаем компьютеры для профессионалов : Компьютер для 3D Компьютер для Photoshop Компьютер для программирования Рендер станция на GPU под…","__filename":"index.md","__url":"/","__resourceUrl":"/index.html","__dataUrl":"/index.html.97081d7709a999cf9354db12b3b10f51.json"},{"title":"First Post, no hero.","date":"2016-01-22T00:00:00.000Z","layout":"Post","description":"This is the first post! Code is highlighted by default.","__filename":"posts\\first-post.md","__url":"/posts/first-post/","__resourceUrl":"/posts/first-post/index.html","__dataUrl":"/posts/first-post/index.html.d2498448086e9666ac559f1acf028049.json"},{"title":"Welcome back to the future of static website!","date":"2016-02-14T00:00:00.000Z","layout":"Post","hero":"https://farm8.staticflickr.com/7479/15669216853_aa8e70eae1_o.jpg","description":"Ahh. Hey, Doc, we better back up, we don't have enough roads to get up to 88. Hi. Where were we. In that case, I'll tell you strait out.…","__filename":"posts\\hello-world.md","__url":"/posts/hello-world/","__resourceUrl":"/posts/hello-world/index.html","__dataUrl":"/posts/hello-world/index.html.6bc50a671eedf76982306380870f2094.json"}];window.__INITIAL_STATE__ = {"pages":{"/articles/difference-between-processor-generations/":{"head":{"title":"Как отличаются между собой поколения процессоров","description":"В этой статье я пытаюсь вычислить разницу в производительности процессоров в идеальном случае - когда производительность линейно зависит от…"},"body":"<p>В этой статье я пытаюсь вычислить разницу в производительности процессоров в идеальном случае - когда производительность линейно зависит от количества ядер и частоты.</p>\n<h1 id=\"Расчет-коэффициентов-производительности\"><a href=\"#%D0%A0%D0%B0%D1%81%D1%87%D0%B5%D1%82-%D0%BA%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8\" class=\"phenomic-HeadingAnchor\">#</a>Расчет коэффициентов производительности</h1>\n<p>Для начала посчитаем как между собой отличаются поколения процессоров.\nТо есть насколько одно ядро процессора на сокете 1366 (архитектура Westmere) работающее на частоте 3ГГц\nмедленнее одного ядра процессора на сокете 2011-1, 2011-2 и 2011-3 работающего на такой же на частоте.\nЭто Sandy Bridge, Ivy Bridge и Haswell соответственно.</p>\n<p>Данные по Westmere, Sandy Bridge, Ivy Bridge и Haswell я взял из этой статьи: <a href=\"http://www.anandtech.com/show/8426/the-intel-haswell-e-cpu-review-core-i7-5960x-i7-5930k-i7-5820k-tested/2\">http://www.anandtech.com/show/8426/the-intel-haswell-e-cpu-review-core-i7-5960x-i7-5930k-i7-5820k-tested/2</a></p>\n<table>\n  <tr>\n    <th>Пакет</th>\n    <th>Westmere</th>\n    <th>Sandy Bridge</th>\n    <th>Ivy Bridge</th>\n    <th>Haswell</th>\n  </tr>\n  <tr>\n    <td>CineBench 10 single</td>\n    <td>4567</td>\n    <td>5299</td>\n    <td>5728</td>\n    <td>6261</td>\n  </tr>\n  <tr>\n    <td></td>\n    <td>0</td>\n    <td>16.03%</td>\n    <td>25.42%</td>\n    <td>37.09%</td>\n  </tr>\n  <tr>\n    <td>CineBench 11.5 single</td>\n    <td>1.11</td>\n    <td>1.3</td>\n    <td>1.35</td>\n    <td>1.4</td>\n  </tr>\n  <tr>\n    <td></td>\n    <td>0</td>\n    <td>17.12%</td>\n    <td>21.62%</td>\n    <td>26.13%</td>\n  </tr>\n  <tr>\n    <td>CineBench 15 single</td>\n    <td>98</td>\n    <td>111</td>\n    <td>117</td>\n    <td>127</td>\n  </tr>\n  <tr>\n    <td></td>\n    <td>0</td>\n    <td>13.27%</td>\n    <td>19.39%</td>\n    <td>29.59%</td>\n  </tr>\n  <tr>\n    <td>Итого прирост однопоточной производительности</td>\n    <td>0.00%</td>\n    <td>15.47%</td>\n    <td>22.14%</td>\n    <td>30.94%</td>\n  </tr>\n</table>\n<table>\n  <tr>\n    <th>Пакет</th>\n    <th>Westmere</th>\n    <th>Sandy Bridge</th>\n    <th>Ivy Bridge</th>\n    <th>Haswell</th>\n  </tr>\n  <tr>\n    <td>CineBench 10 multi</td>\n    <td>15857</td>\n    <td>19351</td>\n    <td>20710</td>\n    <td>22116</td>\n  </tr>\n  <tr>\n    <td></td>\n    <td>0</td>\n    <td>22.03%</td>\n    <td>30.60%</td>\n    <td>39.47%</td>\n  </tr>\n  <tr>\n    <td>CineBench 11.5 multi</td>\n    <td>4.42</td>\n    <td>5.13</td>\n    <td>5.38</td>\n    <td>5.55</td>\n  </tr>\n  <tr>\n    <td></td>\n    <td>0</td>\n    <td>16.06%</td>\n    <td>21.72%</td>\n    <td>25.57%</td>\n  </tr>\n  <tr>\n    <td>CineBench 15 multi</td>\n    <td>383</td>\n    <td>438</td>\n    <td>456</td>\n    <td>504</td>\n  </tr>\n  <tr>\n    <td></td>\n    <td>0</td>\n    <td>14.36%</td>\n    <td>19.06%</td>\n    <td>31.59%</td>\n  </tr>\n  <tr>\n    <td>PovRay</td>\n    <td>805</td>\n    <td>949</td>\n    <td>1021</td>\n    <td>1199</td>\n  </tr>\n  <tr>\n    <td></td>\n    <td>0</td>\n    <td>17.89%</td>\n    <td>26.83%</td>\n    <td>48.94%</td>\n  </tr>\n  <tr>\n    <td>Итого прирост многопоточной производительности</td>\n    <td>0.00%</td>\n    <td>17.59%</td>\n    <td>24.55%</td>\n    <td>36.39%</td>\n  </tr>\n  </table>\n  <table>\n  <tr>\n    <th>Пакет</th>\n    <th>Westmere</th>\n    <th>Sandy Bridge</th>\n    <th>Ivy Bridge</th>\n    <th>Haswell</th>\n  </tr>\n  <tr>\n    <td>Средний прирост</td>\n    <td>0.00%</td>\n    <td>16.53%</td>\n    <td>23.35%</td>\n    <td>33.67%</td>\n  </tr>\n</table>\n<p>Я отбросил данные не относящиеся к рендерингу и получил следующие значения:</p>\n<p>Sandy Bridge быстрее Westmere на 16%</p>\n<p>Ivy Bridge быстрее Westmere на 23%</p>\n<p>Haswell быстрее Westmere на 33%</p>\n<p>Соотвественно получаются коэффициенты 1.16, 1.23 и 1.33 для Sandy Bridge, Ivy Bridge и Haswell по сравнению с Westmere.</p>\n<p>Производительность Broadwell, Skylake и Kaby lake выше Haswell при одинаковой частоте где-то на 6-7% <a href=\"https://www.pcper.com/reviews/Processors/Intel-Core-i7-7700K-Review-Kaby-Lake-and-14nm/Clock-Clock-Kaby-Lake-Skylake-Broad\">(ссылка на результаты тестов)</a>.\nМежду собой Broadwell, Skylake и Kaby lake отличается в пределах статистической погрешности.\nПроизводительность новых процессоров растет за счет увеличения частоты, а не архитектуры, к сожалению. </p>\n<p>Эти коэффициенты используются повсеместно на <a href=\"https://procomp.com.ua\">procomp.com.ua</a> для сравнения конфигураций основанных на процессорах разных поколений между собой.</p>\n<p>Еще раз оговорюсь, что все нижесказанное имеет смысл только для случая линейного прироста производительности от количества ядер процессора.\nТо есть для рендеринга. Любые другие программы от многопоточности выигрывают не так сильно. А иногда и вообще не выигрывают и всегда используют только одно ядро.</p>\n<h1 id=\"Примеры-расчета-производительности-с-применением-этих-коэффициентов\"><a href=\"#%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B-%D1%80%D0%B0%D1%81%D1%87%D0%B5%D1%82%D0%B0-%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D1%81-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC-%D1%8D%D1%82%D0%B8%D1%85-%D0%BA%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82%D0%BE%D0%B2\" class=\"phenomic-HeadingAnchor\">#</a>Примеры расчета производительности с применением этих коэффициентов</h1>\n<p>Для начала вспомним, что такое технология Turbo Boost и как она работает: <a href=\"https://ru.wikipedia.org/wiki/Turbo_Boost\">https://ru.wikipedia.org/wiki/Turbo_Boost</a></p>\n<p>Конкретно, нас интересует тот факт, что Turbo Boost не может поднять частоту до максимальной сразу на всех ядрах процессора, потому что процессор, может выйти за пределы своего теплового пакета при этом (перегреться).</p>\n<p>К примеру для Core i7-5960x Turbo Boost обозначается как 3.5 ГГц при базовой частоте 3.0ГГц, но 3.5ГГц может быть только в случае, если актвино (задествовано по максимуму) лишь одно ядро. То есть выполняется какое-то строго однопоточное приложение - к примеру, javascript в броузере. Если же задействованы по максимуму сразу все ядра процессора - например, при рендеринге, то Turbo Boost подымет частоту ядер лишь до 3.3 ГГц. Именно на частоту 3.3ГГц стоит ориентироваться при оценке производительности системы.</p>\n<p>От скорости работы памяти и дисковой подсистеы рендеринг особо не зависит, все упирается только в процессоры.</p>\n<p>Будем измерять производительность в попугаях:</p>\n<p>1 ядро Westmere на 1ГГц - это один попугай</p>\n<h2 id=\"Примеры-подсчета-производитетельности\"><a href=\"#%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B-%D0%BF%D0%BE%D0%B4%D1%81%D1%87%D0%B5%D1%82%D0%B0-%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8\" class=\"phenomic-HeadingAnchor\">#</a>Примеры подсчета производитетельности:</h2>\n<p><strong>Система на базе одного Core i7-5960x</strong>. 8 ядер. Частота базовая - 3 ГГц. Частота при Turbo Boost на всех ядрах - 3.3 ГГц.</p>\n<p>1 x 8 x 3.0 x 1.33 = 31.92 - базовая производительность.</p>\n<p>1 x 8 x 3.3 x 1.33 = 35.11 - производительность в Turbo Boost</p>\n<p><strong>Система на базе двух Xeon X5670</strong>. 6 ядер. Частота базовая - 2.93 ГГц. Частота при Turbo Boost на всех ядрах - 3.2 ГГц.</p>\n<p>2 x 6 x 2.93 x 1 = 35.16 - базовая производительность.</p>\n<p>2 x 6 x 3.2 x 1 = 38.4 - производительность в Turbo Boost</p>\n<p><strong>Система на базе двух Xeon E5-2670 v1</strong>. 8 ядер. Частота базовая - 2.6 ГГц. Частота при Turbo Boost на всех ядрах - 3 ГГц.</p>\n<p>2 x 8 x 2.6 x 1.16 = 48.26 - базовая производительность.</p>\n<p>2 x 8 x 3.0 x 1.16 = 55.68 - производительность в Turbo Boost </p>\n<p><strong>Почти максимально возможная на сегодняшний день система (просто для справки - каждый процессор стоит больше $3000):</strong> 2 х Xeon E5-2699 v3 - 18 ядер, базовая 2.3, турбобуст на всех ядрах - 2.8</p>\n<p>2 x 18 x 2.3 x 1.3 = 110 - базовая производительность.</p>\n<p>2 x 18 x 2.8 x 1.3 = 134.06 - производительность в Turbo Boost</p>\n","__filename":"articles\\difference-between-processor-generations.md","__url":"/articles/difference-between-processor-generations/","__resourceUrl":"/articles/difference-between-processor-generations/index.html","__dataUrl":"/articles/difference-between-processor-generations/index.html.0f81283f94fe6eea9e6e3f07fdc1bbbe.json"}}}</script><script src="/phenomic.browser.e1b42caf4e66796ee19e.js"></script></body></html>
