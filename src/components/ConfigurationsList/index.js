@@ -1,28 +1,40 @@
-import React from "react"
+import React, { PropTypes } from "react"
 import Shuffle from "react-shuffle"
+import enhanceCollection from "phenomic/lib/enhance-collection"
 
 import Button from "../../components/Button"
 import styles from "./index.css"
 
-const alphabet = [
-  'a','b','c','d','e','f','g','h','i','j','k','l','m',
-  'n','o','p','q','r','s','t','u','v','w','x','y','z']
-
 class ConfigurationsList extends React.Component {
-  state =  {
-      children: alphabet,
+
+  static contextTypes = {
+    collection: PropTypes.array.isRequired,
+  };
+
+  constructor (props, { collection }) {
+    super(props);
+    const configurations = enhanceCollection(collection, {
+      filter: { layout: "Configuration" },
+      sort: "price",
+      reverse: true,
+    });
+    this.state = {
+      allConfigurations: configurations,
+      children: configurations,
       filtered: false    
-  }
+    }
+  }  
+
   showAll = () => {
     this.setState({
-        children: alphabet,
+        children: this.state.allConfigurations,
         filtered: false
       });
   }
-  filterFor3d = () => {
-    if (this.state.filtered === false) {
-      let newChildren = this.state.children.filter(function(child,index){
-        if (index % 2 ===0) {
+
+  filterFor = (tag) => {
+      let newChildren = this.state.allConfigurations.filter(function(child){
+        if (child.tags && child.tags.includes(tag)) {
           return child
         }
       });
@@ -30,29 +42,23 @@ class ConfigurationsList extends React.Component {
         children: newChildren,
         filtered: true
       });
-    } else {
-      this.setState({
-        children: alphabet,
-        filtered: false
-      });
-    }
   }
-  filterForPhotoshop = () => {
 
-  }
   render() {
     return (
       <div className={ styles.demo }>
-        <Button type="button" onClick={this.showAll}>Все</Button>
-        <Button type="button" onClick={this.filterFor3d}>Для 3D</Button>
-        <Button type="button" onClick={this.filterForPhotoshop}>Для Photoshop</Button>
-        <Button type="button" onClick={this.filterForPhotoshop}>Для видеообработки</Button>
+        <Button onClick={this.showAll}>Все</Button>
+        <Button onClick={() => this.filterFor("3d")}>Для 3D</Button>
+        <Button onClick={() => this.filterFor("Photoshop")}>Для Photoshop</Button>
+        <Button onClick={() => this.filterFor("VideEditing")}>Для видеообработки</Button>
+        <Button onClick={() => this.filterFor("Programming")}>Для программирования</Button>
+        <Button onClick={() => this.filterFor("WebServer")}>Веб-сервер</Button>
         <Shuffle duration={300} fade={false}>
-          {this.state.children.map(function(letter){
+          {this.state.children.map(function(page){
             return (
-              <div className={ styles.tile } key={letter}>
+              <div className={ styles.tile } key={page.title}>
                 <img
-                  src={"http://placehold.it/100x100&text=" + letter} />
+                  src={"http://placehold.it/100x100&text=" + page.title} />
               </div>
             )
           })}
