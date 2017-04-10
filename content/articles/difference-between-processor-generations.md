@@ -1,3 +1,7 @@
+---
+title: Как отличаются между собой поколения процессоров
+---
+
 В этой статье я пытаюсь вычислить разницу в производительности процессоров в идеальном случае - когда производительность линейно зависит от количества ядер и частоты.
 
 # Расчет коэффициентов производительности
@@ -11,11 +15,11 @@
 
 <table>
   <tr>
-    <td></td>
-    <td>Westmere</td>
-    <td>Sandy Bridge</td>
-    <td>Ivy Bridge</td>
-    <td>Haswell</td>
+    <th>Пакет</th>
+    <th>Westmere</th>
+    <th>Sandy Bridge</th>
+    <th>Ivy Bridge</th>
+    <th>Haswell</th>
   </tr>
   <tr>
     <td>CineBench 10 single</td>
@@ -66,12 +70,14 @@
     <td>22.14%</td>
     <td>30.94%</td>
   </tr>
+</table>
+<table>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <th>Пакет</th>
+    <th>Westmere</th>
+    <th>Sandy Bridge</th>
+    <th>Ivy Bridge</th>
+    <th>Haswell</th>
   </tr>
   <tr>
     <td>CineBench 10 multi</td>
@@ -136,12 +142,14 @@
     <td>24.55%</td>
     <td>36.39%</td>
   </tr>
+  </table>
+  <table>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <th>Пакет</th>
+    <th>Westmere</th>
+    <th>Sandy Bridge</th>
+    <th>Ivy Bridge</th>
+    <th>Haswell</th>
   </tr>
   <tr>
     <td>Средний прирост</td>
