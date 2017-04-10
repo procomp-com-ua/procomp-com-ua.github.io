@@ -18,7 +18,7 @@ cta:
 ---
 
 Полезные статьи:
-* [Как отличаются между собой поколения процессоров](articles/processor-generations)
+* [Как отличаются между собой поколения процессоров](articles/difference-between-processor-generations)
 * [GTX vs Quadro в качестве видеокарты для 3Ds Max](articles/gtx-vs-quadro)
 
 ---
