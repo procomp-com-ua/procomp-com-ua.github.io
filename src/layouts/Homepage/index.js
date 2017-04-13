@@ -2,6 +2,7 @@ import React from "react"
 
 import ConfigurationsList from "../../components/ConfigurationsList"
 import LatestPosts from "../../components/LatestPosts"
+import NealPage from "../../components/NealPage"
 import Page from "../Page"
 
 const Homepage = (props) => {
@@ -9,6 +10,7 @@ const Homepage = (props) => {
     <Page { ...props }>
       <LatestPosts />
       <ConfigurationsList />
+      <NealPage />
     </Page>
   )
 }
